@@ -24,6 +24,17 @@ in-memory data, relational data, and XML Data.
 What can I access?
   - Objects, MongoDB, CSV Files, File System, SQL DB, JSON, HL7 XML and more!!
 
+Examples: 
+```
+DirectoryInfo directory = new DirectoryInfo(path);
+var query = from file in directory.GetFiles()
+           orderby file.Length descending
+           select file;
+
+var query2 = directory.GetFiles()
+            .OrderByDescending(f => f.Length)
+            .Take(5);
+```
 *****************************
 2. LINQ and C#.
 *****************************
