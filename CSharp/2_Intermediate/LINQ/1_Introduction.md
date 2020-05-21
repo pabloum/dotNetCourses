@@ -1,7 +1,7 @@
 
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
-LINQ - Language Integrated Query.
+##LINQ - Language Integrated Query.
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 |
@@ -24,7 +24,7 @@ in-memory data, relational data, and XML Data.
 What can I access?
   - Objects, MongoDB, CSV Files, File System, SQL DB, JSON, HL7 XML and more!!
 
-Examples: 
+Examples:
 ```
 DirectoryInfo directory = new DirectoryInfo(path);
 var query = from file in directory.GetFiles()
