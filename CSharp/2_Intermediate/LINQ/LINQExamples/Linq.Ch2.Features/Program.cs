@@ -3,8 +3,29 @@ using System.Collections.Generic;
 
 namespace Linq.Ch2.Features
 {
+    public static class MyClassWithExtensioMethod 
+    {
+        // Extension method Example
+        static public double MyExtensionMethod(this string data)
+        {
+            double result = double.Parse(data);
+            return result;
+        }
+
+        static public int Count<T>(this IEnumerable<T> employees)
+        {
+            int result = 0;
+            foreach (var item in employees)
+            {
+                result += 1;
+            }
+            return result;
+        }
+    }
+
     class Program
     {
+
         static void Main(string[] args)
         {
             LOG("Start execution");
@@ -22,6 +43,9 @@ namespace Linq.Ch2.Features
                 new Employee { Id = 3, Name = "José" },
                 new Employee { Id = 4, Name = "Nati" }
             };
+
+            LOG( "The count is " + testers.Count());
+
 
             //IEnumerator<Employee> enumerator = ((IEnumerable<Employee>)developers).GetEnumerator();
             IEnumerator<Employee> enumerator = developers.GetEnumerator();
