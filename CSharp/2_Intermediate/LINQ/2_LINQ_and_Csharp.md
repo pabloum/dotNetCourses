@@ -83,3 +83,40 @@ I cannot re-implement, replace or method which is already an instance method on 
 ### Understanding Lambda Expressions
 
 _Hi_
+
+Where method -> For filtering
+Ways of using it:
+
+1. _Named method_
+  ```
+  IEnumerable<string> filteredList = cities.Where(StartsWithM); // Name of the method. I'm not calling it
+
+  [...]
+
+  public bool StartWithM(string city) {
+    return city.Name.StartsWith("M");
+  }
+```
+2. _anonymous method_
+  Other approach. Use `delegate` keyword. This allows to write an inline method.
+  We call this an _anonymous method_
+  ```
+  IEnumerable<string> filteredList = cities.Where( delegate (string s )
+                                                      { return city.Name.StartsWith("M"); }
+                                                  ); // Name of the method. I'm not calling it
+  ```
+3. _Lambda expression syntax_
+  Short, concise syntax for defining a method that I can invoke. This is also an anonymous method
+
+  ```
+  IEnumerable<string> filteredList = cities.Where(s => s.Name.StartsWith("M") );
+  // Name of the method. I'm not calling it
+  ```
+
+|
+|
+
+
+### Using Func and Action Types
+
+`.Where();` // This function expects a `Func<City, bool> predicate` type
