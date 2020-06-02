@@ -120,3 +120,39 @@ Ways of using it:
 ### Using Func and Action Types
 
 `.Where();` // This function expects a `Func<City, bool> predicate` type
+
+Func<> type is an easy way to work with delegates.
+  Delegates: Types that allow me to create variables that point to methods.
+
+There are 17 overloads to the Func type. That meand, the Funct type can take from 1 to 17 different generic type parameters
+
+```
+Func<TypeParam1, TypeParam2, ReturnType>
+```
+
+e.g.
+
+```
+int Suma(int a, int b) { reuturn a+b;}
+
+Func<int, int, int> f = Suma;
+Func<int, int, int> g = (x, y) => x + y; // parenthesis mandatory for zero or more than one parameter
+Func<int, int, int> h = (int x, int y) => x * y; // type name optional
+Func<int, int, int> h = (int x, int y) => {
+  int result = x * y;
+  return result;
+}; // type name optional
+
+```
+
+Type: Action<>  -> This is to store functions which do not retunrn a value, and all the generic values that you send ar just going to be parameters to the function.
+
+Action<int> print = x => Console.WriteLine("I received a " + x)
+
+
+e.g.
+
+  developers.Where(e => e.Name.Length >= 5)   // los desarrolladores con el nombre mayor de 5 letras
+            .OrderBy(e => e.Name);            // ordenar los resultados por nombre
+
+Lo que estoy enviando dentro de esos métodos son varibales de tipo Func<>
