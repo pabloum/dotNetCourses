@@ -156,3 +156,30 @@ e.g.
             .OrderBy(e => e.Name);            // ordenar los resultados por nombre
 
 Lo que estoy enviando dentro de esos métodos son varibales de tipo Func<>
+
+
+|
+|
+|
+|
+
+### Using var keyword for implicit typing
+
+
+No need to specify the type of the variable.
+
+var suma = (x, y) => x + y;
+
+THIS IS NOT DYNAMIC TYPING. This is strong typing. The compiler deduces the the type after declaration, and later you may not change the type
+
+var only serves for local variables. Not for method's paramters or class' members
+
+You must initialize the variableif you use var.
+
+
+|
+|
+|
+|
+
+### Query syntax vs Method Syntax
