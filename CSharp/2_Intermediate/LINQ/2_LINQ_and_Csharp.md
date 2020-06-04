@@ -183,3 +183,27 @@ You must initialize the variableif you use var.
 |
 
 ### Query syntax vs Method Syntax
+
+So, we have 2 ways of writing queries with LINQ:  
+
+  1. With extension methods, such as .Where , .OrderBy , .Count
+  2. QUery Syntax - SQL like -
+
+  Query syntax always start with `from` keyword
+  Query syntax always end with `select` keyword or `group`
+
+```
+IEnumerable<string> filteredCities = from city in cities    // you could interpret this as a foreach
+                                      where city.StartsWith("L") && city.Length < 15
+                                      orderby city
+                                      select city;
+```                                      
+
+Here, in difference with SQL, we have the SELECT at the end. That is useful, because that's the last part to be resolved, and besides knowing beforehead the type of the variable could be useful for InteliSense
+
+With method extension approach, you could use a `.Select(e => e)` but it is unncessary.
+
+Count() Take() Skip() => Not available in queries syntax. Only on methods approach
+
+`.OrderByDescending(e => e.Name)` // Extension method approach
+`orderby Name descending`         // query syntax approach. 
