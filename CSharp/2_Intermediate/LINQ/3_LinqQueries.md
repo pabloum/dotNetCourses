@@ -92,3 +92,14 @@ while (enumerator.MoveNext())
 |
 |
 ### Avoid pitfalls of Deferred execution  
+
+For exameple when we call Count() method before actually using the elements.
+
+When a method does not support deferred execution, and forces the entire query to complete before actually calling the method.
+
+When you think that this might happen, there are ways to force that query into a concrete result with various methods: `.ToArray()<T>` , `ToList()<T>`
+
+var query =  movies.Where(m => m.Year > 2000).ToList();
+
+
+It is better to look in the documentation, but usually, methods that return an abstract type (such as Where() which returns IEnumerable) are deferred methods. On the other hand, methods such as ToList(), or Count(), return a concrete type (List<T> and int respectively) and must be executed immediately. 
