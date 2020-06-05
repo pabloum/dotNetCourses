@@ -102,4 +102,54 @@ When you think that this might happen, there are ways to force that query into a
 var query =  movies.Where(m => m.Year > 2000).ToList();
 
 
-It is better to look in the documentation, but usually, methods that return an abstract type (such as Where() which returns IEnumerable) are deferred methods. On the other hand, methods such as ToList(), or Count(), return a concrete type (List<T> and int respectively) and must be executed immediately. 
+It is better to look in the documentation, but usually, methods that return an abstract type (such as Where() which returns IEnumerable) are deferred methods. On the other hand, methods such as ToList(), or Count(), return a concrete type (List<T> and int respectively) and must be executed immediately.
+
+|
+|
+|
+|
+|
+
+### Exceptions and Deferred queries
+
+Deferred queries may also be tricky with exceptions
+
+(It's generally bad practice to use the Base Exception class.)
+
+Whe can declare empty queries like follows:
+
+e.g.  `var query = Enumerable.Empty<Movie>();`
+
+So, what you need to have inside the TRY block is the piece of code that forces the query no execute and not the definition of the query.
+
+This is useless and your catch won't catch any resulting error
+```
+var query = Enumerable.Empty<Movie>();
+try {
+  query = movies.Where(m => m.Year > 2000);
+}
+catch {
+  Console.WriteLine("Error");
+}
+query.Count();
+```
+
+This would be the correct approach
+```
+var query = movies.Where(m => m.Year > 2000);
+
+try {
+  query.Count();
+}
+catch {
+  Console.WriteLine("Error");
+}
+```
+
+|
+|
+|
+|
+|
+
+### All about streaming operators
