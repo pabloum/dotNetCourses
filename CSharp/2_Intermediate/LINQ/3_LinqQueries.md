@@ -153,3 +153,41 @@ catch {
 |
 
 ### All about streaming operators
+
+Methods that are Deferred methods, can be categorized into Streaming operators or Non-Streaming operators.
+
+
+*Streaming Operator*
+    .Where()
+
+*Non-Streaming Operator*
+    .OrderByDescending()
+    .OrderBy()
+
+    These type of operators don't force the query to execute when it is declared (unlike ToList()), therefore this method is Deferred. However, once the query is forced to execute, for example calling .Count() method, the query must interate the entire list (query) before executing the .Count() method. You can't be yielding one result at a time. It will operate the entire list, then when you get your list, it will count them.
+
+e.g.
+
+   To print the first element, the query will be execute until it finds the next element that fullfills the condition. If it finds one, it will stop execution, and yield that result. So, we will be executing the query in every single step of out while-loop
+   ```
+   var query = movies.Where(m => m.Year > 2000);
+   var enumerator = query1.GetEnumerator();
+
+   while (enumerator.MoveNext())
+   {
+       Console.WriteLine(enumerator.Current.Title);
+   }
+   ```
+
+   It will execute the entire query before printing the title of the first element.
+   ```
+   var query = movies.Where(m => m.Year > 2000).OrderBy(m => m.Rating);
+   var enumerator = query1.GetEnumerator();
+
+   while (enumerator.MoveNext())
+   {
+       Console.WriteLine(enumerator.Current.Title);
+   }
+   ```
+
+With In-Memory data it is better to filter and then Order. It is more efficient. 
