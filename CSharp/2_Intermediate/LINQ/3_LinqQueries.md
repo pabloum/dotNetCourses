@@ -190,4 +190,38 @@ e.g.
    }
    ```
 
-With In-Memory data it is better to filter and then Order. It is more efficient. 
+With In-Memory data it is better to filter and then Order. It is more efficient.
+
+
+|
+|
+|
+|
+|
+
+### Querying infinity.
+
+Search for: *Classification of standard linq operators.* to check if an operator is deferred or not.
+
+https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/classification-of-standard-query-operators-by-manner-of-execution
+
+static IEnumerable<double> Random() {
+  var random = Random();
+  while (true) {
+    yield return random.NextDouble();
+  }
+}
+
+var numbers = Random().Where(n => n > 0.5).Take(10);
+
+This wouldn't execute forever. This would just execute until the method returns 10 numbers greater than 0.5
+
+|
+|
+|
+|
+|
+
+### Summary
+
+Analyse if operators are lazy or not, before using them. That might improve the performance of your code.
