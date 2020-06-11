@@ -167,7 +167,7 @@ select new { // This is an anonymous type.
 };
 ```
 
-With the methdo syntax
+With the methdod syntax
 ```
 // Sort the most fuel efficient cars.
 var query = cars.Where(c => c.Manufacturer == "BMW" && c.Year == 2016)
