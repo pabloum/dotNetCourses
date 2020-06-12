@@ -1,0 +1,36 @@
+﻿@page
+@model PumToFood.Pages.Restaurants.ListModel
+@{
+}
+
+    <h1>
+        This is the Restaurant!! BUAHAHAH
+    </h1>
+
+    <div>
+        <p>
+            @Model.Message
+        </p>
+        <p>
+            @Model.Message2
+        </p>
+
+        <div>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Cuisine</th>
+                </tr>
+
+                @foreach (var restaurant in Model.Restaurants)
+                {
+                    <tr>
+                        <td>@restaurant.Name</td>
+                        <td>@restaurant.Location</td>
+                        <td>@restaurant.Cuisine</td>
+                    </tr>
+                }
+                </table>
+        </div>
+    </div>
