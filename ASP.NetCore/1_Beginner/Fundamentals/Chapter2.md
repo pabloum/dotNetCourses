@@ -59,4 +59,4 @@ services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
 We have learned to display a list of restaurants. We used a razor page to process HTTP request for Get, and then we put together data for the page to display.
 
 Separation of concerns in razor pages:
-All of your heavy lifting takes place in C# code in the PageModel, while the cshtml file contains just simple expressions and HTML markup
+All of your heavy lifting takes place in C# code in the PageModel, while the cshtml file contains just simple expressions and HTML markup.
