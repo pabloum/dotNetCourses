@@ -9,6 +9,7 @@ namespace PumToFood.Data
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetAll();
+        IEnumerable<Restaurant> GetRestaurantByName(string name);
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -20,16 +21,26 @@ namespace PumToFood.Data
             _restaurants = new List<Restaurant>()
             { 
                 new Restaurant { Id = 1, Name = "Pablo's Restaurant", Location = "Medallo", Cuisine = CuisineType.Colombian },
-                new Restaurant { Id = 2, Name = "Pablo's Restaurant", Location = "Cali", Cuisine = CuisineType.Colombian },
-                new Restaurant { Id = 3, Name = "Pablo's Restaurant", Location = "Bogotá", Cuisine = CuisineType.Colombian },
-                new Restaurant { Id = 4, Name = "Pablo's Restaurant", Location = "DF", Cuisine = CuisineType.Mexican },
-                new Restaurant { Id = 5, Name = "Pablo's Restaurant", Location = "Ciudad", Cuisine = CuisineType.Mexican },
-                new Restaurant { Id = 6, Name = "Pablo's Restaurant", Location = "New Dehli", Cuisine = CuisineType.Indian }
+                new Restaurant { Id = 2, Name = "pablo's Restaurant", Location = "Cali", Cuisine = CuisineType.Colombian },
+                new Restaurant { Id = 3, Name = "Vero's Restaurant", Location = "Bogotá", Cuisine = CuisineType.Colombian },
+                new Restaurant { Id = 4, Name = "PocaLuz's Restaurant", Location = "DF", Cuisine = CuisineType.Mexican },
+                new Restaurant { Id = 5, Name = "Fea's Restaurant", Location = "Ciudad", Cuisine = CuisineType.Mexican },
+                new Restaurant { Id = 6, Name = "Foxie's Restaurant", Location = "New Dehli", Cuisine = CuisineType.Indian }
             };
         }
         public IEnumerable<Restaurant> GetAll()
         {
             var query = from r in _restaurants
+                        orderby r.Name descending
+                        select r;
+
+            return query;
+        }
+
+        public IEnumerable<Restaurant> GetRestaurantByName(string name = null)
+        {
+            var query = from r in _restaurants
+                        where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                         orderby r.Name descending
                         select r;
 
