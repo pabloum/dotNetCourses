@@ -17,7 +17,12 @@ namespace PumToFood.Pages.Restaurants
 
         public string Message { get; set; }
         public string Message2 { get; set; }
+        public string SearchInput { get; set; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
 
         public ListModel(IConfiguration config, IRestaurantData restaurantData)
         {
@@ -30,7 +35,9 @@ namespace PumToFood.Pages.Restaurants
 
             Message     = "Hallo, Welt";
             Message2    = _config["Message"];
-            Restaurants = _restaurantData.GetRestaurantByName(searchValue);
+            //SearchInput = searchValue;
+            //Restaurants = _restaurantData.GetRestaurantByName(searchValue);
+            Restaurants = _restaurantData.GetRestaurantByName(SearchTerm);
         }
     }
 }

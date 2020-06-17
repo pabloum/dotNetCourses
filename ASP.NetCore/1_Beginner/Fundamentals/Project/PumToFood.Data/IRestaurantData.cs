@@ -10,6 +10,7 @@ namespace PumToFood.Data
     {
         IEnumerable<Restaurant> GetAll();
         IEnumerable<Restaurant> GetRestaurantByName(string name);
+        Restaurant GetById(int id);
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -46,5 +47,18 @@ namespace PumToFood.Data
 
             return query;
         }
+
+        public Restaurant GetById(int id)
+        {
+            var query = from r in _restaurants
+                        where r.Id == id
+                        select r;
+            var option1 = query.FirstOrDefault();
+
+            var option2 = _restaurants.SingleOrDefault(r => r.Id == id);
+
+            return option2;
+        }
+
     }
 }
