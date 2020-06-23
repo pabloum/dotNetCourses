@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PumToFood", "PumToFood.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PumToFood.Core", "..\PumToFood.Core\PumToFood.Core.csproj", "{4493882C-E18D-4CF9-898E-55CB5367ECFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumToFood.Data", "..\PumToFood.Data\PumToFood.Data.csproj", "{D376D04F-A9E3-4A0D-B67E-1E6931485497}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PumToFood.Data", "..\PumToFood.Data\PumToFood.Data.csproj", "{D376D04F-A9E3-4A0D-B67E-1E6931485497}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

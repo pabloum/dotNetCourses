@@ -51,9 +51,18 @@
                                 @*href="/Restaurants/Detail?restaurantId=@restaurant.Id"*@
                                 &#128270;
                             </a>
+                            <a class="btn btn-lg"
+                               asp-page="./Edit"
+                               asp-route-restaurantId="@restaurant.Id">
+                                @*href="/Restaurants/Detail?restaurantId=@restaurant.Id"*@
+                                &#x270D;
+                            </a>
                         </td>
+
                     </tr>
                 }
                 </table>
+
+            <a asp-page=".\Edit" class="btn btn-primary">Add new Restaurant</a>
         </div>
     </div>

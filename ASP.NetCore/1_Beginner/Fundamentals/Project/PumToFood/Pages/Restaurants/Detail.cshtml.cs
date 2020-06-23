@@ -14,6 +14,9 @@ namespace PumToFood.Pages.Restaurants
         public Restaurant Restaurant { get; set; }
         public IRestaurantData _restaurantData { get; set; }
 
+        [TempData]
+        public string Message { get; set; }
+
         public DetailModel(IRestaurantData restaurantData)
         {
             _restaurantData = restaurantData;

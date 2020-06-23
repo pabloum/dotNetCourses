@@ -11,6 +11,9 @@ namespace PumToFood.Data
         IEnumerable<Restaurant> GetAll();
         IEnumerable<Restaurant> GetRestaurantByName(string name);
         Restaurant GetById(int id);
+        Restaurant Update(Restaurant updatedRestaurant);
+        Restaurant Create(Restaurant createdRestaurant);
+        int Commit();
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -58,6 +61,33 @@ namespace PumToFood.Data
             var option2 = _restaurants.SingleOrDefault(r => r.Id == id);
 
             return option2;
+        }
+
+        public Restaurant Create(Restaurant createdRestaurant)
+        {
+            createdRestaurant.Id = _restaurants.Max(r => r.Id) + 1;
+            _restaurants.Add(createdRestaurant);
+
+            return createdRestaurant;
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = _restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+            
+            if (restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+
+            return restaurant;
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
 
     }
