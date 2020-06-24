@@ -14,3 +14,5 @@ IValidatableObject // This could be used for more complex validations
 PRG pattern. Post redirect get
 
 ### Create a restaurant
+
+We will use the same Form for Edit
