@@ -8,6 +8,11 @@ namespace PumToFood.Data
 {
     public class PumToFoodDbContext : DbContext
     {
+        public PumToFoodDbContext(DbContextOptions<PumToFoodDbContext> options) : base(options)
+        {
+
+        }
+
         public DbSet<Restaurant> Restaurants { get; set; }
     }
 }

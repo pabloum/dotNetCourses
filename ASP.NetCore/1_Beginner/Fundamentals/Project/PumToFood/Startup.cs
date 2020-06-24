@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +25,14 @@ namespace PumToFood
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>(); // JUST for development and test. A List<T> is not thread safe, meaning, it can't be accessed at the same time
+
+            services.AddDbContextPool<PumToFoodDbContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("PumToFoodDb"));
+            });
+
+            // services.AddSingleton<IRestaurantData, InMemoryRestaurantData>(); // JUST for development and test. A List<T> is not thread safe, meaning, it can't be accessed at the same time
+            services.AddScoped<IRestaurantData, SqlRestaurantData>(); 
+
             services.AddRazorPages();
         }
 
