@@ -63,3 +63,6 @@ Where to we import all namespaces and tag helpers?
 Follow the same steps for razor page, but uncheck `Generate Page Model` and check `Create a partial view`
 
 Remember the conventio: Use underscore _ to indicate that it is not a primary page.
+
+
+### Using a View component

@@ -22,13 +22,15 @@
                         @*<input type="search" class="form-control" name="searchValue" value="@Model.SearchInput" />*@
                         <input type="search" class="form-control" asp-for="SearchTerm" />
                         @*<span class="input-group-append">*@
-                            <button type="submit" class="btn btn-default">
-                                <i class="fa fa-search">&#x1F50D;</i>
-                            </button>
+                        <button type="submit" class="btn btn-default">
+                            <i class="fa fa-search">&#x1F50D;</i>
+                        </button>
                         @*</span>*@
                     </div>
                 </div>
             </form>
+
+            <h3>One way of displaying using a Table</h3>
 
             <table class="table">
                 <tr>
@@ -63,12 +65,23 @@
                                 @*href="/Restaurants/Detail?restaurantId=@restaurant.Id"*@
                                 &#128465;
                             </a>
-                            
+
                         </td>
 
                     </tr>
                 }
-                </table>
+            </table>
+
+            <a asp-page=".\Edit" class="btn btn-primary">Add new Restaurant</a>
+
+
+
+            <h3>Other way of displaying using partial views</h3>
+
+            @foreach(var restaurant in Model.Restaurants)
+            {
+                <partial name="_Summary" model="restaurant" />
+            }
 
             <a asp-page=".\Edit" class="btn btn-primary">Add new Restaurant</a>
         </div>
