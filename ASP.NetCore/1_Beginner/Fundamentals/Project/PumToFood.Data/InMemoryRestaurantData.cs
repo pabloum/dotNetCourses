@@ -90,5 +90,10 @@ namespace PumToFood.Data
         {
             return 0;
         }
+
+        public int GetCountRestaurants()
+        {
+            return _restaurants.Count();
+        }
     }
 }

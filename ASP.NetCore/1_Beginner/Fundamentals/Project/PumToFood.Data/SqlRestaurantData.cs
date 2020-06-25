@@ -47,6 +47,11 @@ namespace PumToFood.Data
             return DbContext.Restaurants.Find(id); // PK
         }
 
+        public int GetCountRestaurants()
+        {
+            return DbContext.Restaurants.Count();
+        }
+
         public IEnumerable<Restaurant> GetRestaurantByName(string name)
         {
             var query = from r in GetAll()

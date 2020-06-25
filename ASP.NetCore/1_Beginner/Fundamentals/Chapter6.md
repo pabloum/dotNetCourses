@@ -66,3 +66,38 @@ Remember the conventio: Use underscore _ to indicate that it is not a primary pa
 
 
 ### Using a View component
+
+Uses MVC pattern.
+
+Difference with a Pazor page: View component does not respond to a HTTP request. I'm not worried about GET or POST or any of that.
+
+A view component is more like a partial view. It is going to be embedded inside other view, which is simply going to say: please, go and render this component.
+
+When that happens, ASP.Net is going to call a method called Invoke(), which you have to implement in your class, which should implement `ViewComponent` interface.
+
+### Rendering a view component.
+
+Convention: Create named Components inside Shared folder.
+
+There, create the folder of your created ViewComponent. e.g. RestaurantCount
+
+Add reference inside `_ViewImports.cshtml`
+
+    `@addTagHelper *, PumToFood`
+
+Kebab case (kebab-case)
+<vc::restaurant-count></vc::restaurant-count> // Where you want to place your view component.
+
+What if you need to send parameters?
+
+  <vc::restaurant-count myParameter="coso"></vc::restaurant-count>
+
+  then on the Invoke method:
+
+  Invoke(in myParameter) {}
+
+
+Important difference:
+
+  *View compoent* A view component can be completely independet.
+  *Partial view* Always depends on model information coming from its parent view.

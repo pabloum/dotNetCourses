@@ -12,6 +12,7 @@ namespace PumToFood.Data
         Restaurant Update(Restaurant updatedRestaurant);
         Restaurant Create(Restaurant createdRestaurant);
         Restaurant Delete(int id);
+        int GetCountRestaurants();
         int Commit();
     }
 }
