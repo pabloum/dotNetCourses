@@ -25,3 +25,9 @@
 </div>
 
 <a asp-page="./List" class="btn btn-info"> All Resturants</a>
+
+<a class="btn btn-danger"
+   asp-page="./Delete"
+   asp-route-restaurantId="@Model.Restaurant.Id">
+    Delete this Restaurant!
+</a>
