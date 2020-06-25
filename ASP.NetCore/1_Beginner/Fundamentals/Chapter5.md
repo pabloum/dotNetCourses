@@ -84,6 +84,8 @@ $ dotnet ef database
 *Note*. I'm running all these commands in the Data project, i.e. where we have the DbContext class.
 
 
+To install a specific version of the tool, use the following command:
+`dotnet tool install --global dotnet-ef --version 3.1.4`
 
 ### Implementing Data Access Service.
 
