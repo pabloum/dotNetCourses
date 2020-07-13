@@ -61,4 +61,19 @@ I created a new Razor page. I did nothing in the model. But here is what the aut
 
 - Then, right click on the folder, add a controller, API controller with actions using Entity Framework.
 
--  
+- Adjust StartUp
+      // for aspnetcore3.0+
+
+      services.AddRazorPages();
+      services.AddControllers();
+
+
+      app.UseRouting();            
+      app.UseEndpoints(e =>
+      {
+          e.MapRazorPages();
+          e.MapControllers();
+      });
+
+
+### Using Data Tables
