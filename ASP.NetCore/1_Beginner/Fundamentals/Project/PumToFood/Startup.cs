@@ -53,6 +53,7 @@ namespace PumToFood
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+             
 
             app.UseRouting();
 
