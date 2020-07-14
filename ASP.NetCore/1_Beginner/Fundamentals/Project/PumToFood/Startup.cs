@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -51,6 +52,8 @@ namespace PumToFood
                 app.UseHsts();
             }
 
+            app.Use(SayHelloMiddleware);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
              
@@ -64,6 +67,24 @@ namespace PumToFood
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+        }
+
+        private RequestDelegate SayHelloMiddleware(RequestDelegate next)
+        {
+            return async ctx => {
+                if (ctx.Request.Path.StartsWithSegments("/hello"))
+                {
+                    ctx.Response.WriteAsync("Hello, World!");
+                }
+                else
+                {
+                    await next(ctx);
+                    //if (ctx.Response.StatusCode == 200)
+                    //{
+                    //    // do  something if you want
+                    //}
+                }
+            };
         }
     }
 }
