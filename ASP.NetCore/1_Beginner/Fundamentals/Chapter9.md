@@ -73,3 +73,32 @@ This approach is Framework dependent. Faites attention.
 ### Building a self-contained Application
 
 i.e. Does not require to have a version of the framework installed. GG
+
+e.g.
+
+`dotnet publish -o :c/temp/PumToFood --self-contained`
+
+It has drawbacks :(
+    1. Security patches
+    2. Framework upgrade for multiple apps in the same server :(
+
+
+With the previous command, you'll get an error. You need to specify the "runtime". You need to know where you are going to deploy the application. And what the target system looks like. i.e. 32 Windows, 64windowx, 64linux, 64osx. Which architecture? Which operator system?
+
+So, in other words, you need to pass a runtime identifier with -r
+
+    (Google for .net core runtime identifier.)  *.NET Core RID Catalog*
+
+`dotnet publish -o :c/temp/PumToFood --self-contained -r win-x86`
+`dotnet publish -o :c/temp/PumToFood --self-contained -r win7-x64`
+`dotnet publish -o :c/temp/PumToFood --self-contained -r linux-x64`
+
+e.g.
+`dotnet publish -o :c/temp/PumToFood --self-contained -r win-x64`
+
+this, creates an .exe
+You may find it in PumToFood/PumToFood.exe
+
+That would be  your app
+
+### Deploying to a web server
