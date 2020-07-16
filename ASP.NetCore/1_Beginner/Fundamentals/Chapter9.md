@@ -101,4 +101,90 @@ You may find it in PumToFood/PumToFood.exe
 
 That would be  your app
 
+|
+|
+|
+|
+
 ### Deploying to a web server
+
+Documentation: Host ASP.NET Core on Linux with Nginx
+
+Documentation: Host ASP.NET Core on Linux with Apache
+
+Documentation: Host ASP.NET Core on Windows with IIS
+
+    There are other PS courses to use ISS ._._.
+
+
+So, deploymento with ISS is "very simple". Publish ýour code, and then point my website to that published output.
+
+
+
+### Exploring webconfig
+
+Tip. Run your .exe from the console. If it runs there, it will likely run on IIS
+
+In the webconfig. it is stated which file to run, and which links to attend, and which verbs (GET, POST, PUT, DELETE) should the app respond to.
+
+Server: Kestrel. Listens on port 5000 and 5001
+
+We would like to store db passwords on environment variables
+
+
+### Setting automatic Entity Framework
+
+
+If you're working with migrations, the author suggest to change the Program.cs
+
+```
+public static void Main(string[] args)
+{
+    var host = CreateHostBuilder(args).Build();
+
+    MigrateDatabase(host);
+
+    host.Run();
+}
+
+public void MigrateDatabase(IWebHost host)
+{
+    using(var scope = host.Services.CreateScoped())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<PumToFood>();
+        db.Database.Migrate(); // This will automatically execute all the migrations, if there´s any pending
+    }
+}
+
+```
+
+### Connecting to a SQL Server
+
+The user sets up a new login in a real SQL Server
+    - Server Role
+    - Login - user and password.
+
+Create appsetting.Production.json with the new Connection string
+
+
+This chapter was rather fast, and the author insisted a lot in going to a SQL Server and/or ISS course. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
