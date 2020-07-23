@@ -63,5 +63,42 @@ REpresentational State Transfer
 
 ### What are Resources?
 
+Often they are considered an entity, but not necessarily. One resource is often represented by several entities, through relation between tables. So, let's just think of Resources as a context. where one could find several entities.
 
+
+### What are URI
+
+Actual address to our API.
+They're what we call URI, or Uniform Resource Identifier.
+
+URIs are just a path to resources in my system.
+
+Query strings: are for non-data elements
+               e.g. format, sorting, searching.
+               This is not part of data. It is just optional.
+
+
+### Designing the API.
+
+Camp --> Location
+|
+¨
+Talk
+|
+¨
+Speaker
+
+i.e. Camp has a location. Camp also has a Talk. And a Talk has a Speaker
+
+
+https:// [. . .] /api/camps     ---> each of camps our website can surface
+
+(Moniker (?) dafaq is that?)
+
+/api/camps/ATL2018
+/api/camps/ATL2018/talks       ---> Associative API
+/api/camps/ATL2018/talks?topic=database  ----> Query strings
+/api/camps/ATL2018/talks/1
+/api/camps/ATL2018/talks/1/speaker
+/api/reloadconfig             ---> operational API. That does not actually depend on resources
 .
