@@ -46,7 +46,34 @@ Route + Verb => which method to use. -> This is ultimately the endpoint. Not the
 
 ### Using GET for collections.
 
+Faites attention aux choses async. Wrap your return type within a Task<>
+```
+[HttpGet]  // Attribute.
+public async Task<IActionResult> Get()
+{
+    try
+    {
+        var results = await _repository.GetAllCampsAsync();
 
+        return Ok(results);
+    }
+    catch (Exception)
+    {
+        return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
+    }
+}
+```
 
 
 ### Returning models instead of entities.
+
+Why?
+  Payload is a contract with your users.
+  Likely want to filter data for security too
+  Surrogate keys are useful too.
+
+Use AutoMapper. Create Profiles for the mapper.
+
+Tip. Return `ActionResult<T>`. With that, the framework understands to return an Ok() if you return a type that matches with `T`
+
+### 

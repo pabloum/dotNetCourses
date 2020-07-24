@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CoreCodeCamp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,10 +19,14 @@ namespace CoreCodeCamp
   {
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddDbContext<CampContext>();
-      services.AddScoped<ICampRepository, CampRepository>();
+        services.AddDbContext<CampContext>();
+        services.AddScoped<ICampRepository, CampRepository>();
 
-      services.AddMvc()
+        services.AddAutoMapper();
+
+
+
+        services.AddMvc()
         .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
     }
 
