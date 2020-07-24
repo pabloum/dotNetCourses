@@ -1,0 +1,52 @@
+#
+
+## Building your first API.
+
+### Introduction
+
+### Creating an action
+
+[Route("api/[controller]")]
+public class CampsController : ControllerBase
+{
+  public object CualquierCosa() {
+    return new { Moniker = "PUM", Name = "Pablo"};
+  }
+}
+
+### Status Codes
+
+Tells if something went good or not
+
+Standard codes:
+  200 OK                It worked
+  400 Bad Request       You did bad
+  500 Internal error    We did bad
+
+304 - Not modified. Representing cached objects
+
+
+### Using status codes
+
+[HttpGet]   // Attribute.
+public IActionResult Get()
+{
+    if (false)
+        return BadRequest("Bad studd happend");
+
+    return Ok(new { Moniker = "ATL2018", Name = "Pablo Uribe M"});
+}
+
+Methods: They're in the base class. You may find them
+          Ok()                  200
+          BadRequest()          500
+
+Route + Verb => which method to use. -> This is ultimately the endpoint. Not the class, but the method.
+
+
+### Using GET for collections.
+
+
+
+
+### Returning models instead of entities.
