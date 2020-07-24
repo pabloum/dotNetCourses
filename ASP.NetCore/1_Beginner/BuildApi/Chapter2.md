@@ -102,3 +102,18 @@ https:// [. . .] /api/camps     ---> each of camps our website can surface
 /api/camps/ATL2018/talks/1/speaker
 /api/reloadconfig             ---> operational API. That does not actually depend on resources
 .
+
+
+### Some Postman
+
+For testing purposes, make sure to go to settings an turn on `Two-pane view` in the USER INTERFACE section and turn off `Automatically follow redirects` in the HEADERS section
+
+On Visual Studio:
+    Right click on project -> properties -> Debug
+                                              = Port
+                                              = Stop browser from launching
+    You could do the same, just by changing `launchSettings.json`
+
+What is SSL?
+  Secure sockets layer
+  Standard technology for keeping an Internet connection secure and safeguarding any sensitive data.
