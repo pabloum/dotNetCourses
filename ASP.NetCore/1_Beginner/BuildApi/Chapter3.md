@@ -76,4 +76,44 @@ Use AutoMapper. Create Profiles for the mapper.
 
 Tip. Return `ActionResult<T>`. With that, the framework understands to return an Ok() if you return a type that matches with `T`
 
-### 
+
+### Getting an individual item
+
+[HttpGet("{moniker}")] // string by default
+public object Get(string moniker) { // ... // }
+
+[HttpGet("{id:int}")]
+public object Get(int id) { // .. // }
+
+
+### Returning related data
+
+With the help of AutoMapper we have 2 options.
+
+1. In CampsModel, create all the fields from Location, with the prefix Location. Automapper does the job.
+
+2. In Profile, use .ForMember as follows:
+
+    e.g.
+    CreateMap<Camp, CampModel>()
+        .ForMember(c => c.Venue, o => o.MapFrom(m => m.Location.VenueName));
+
+### Query strings
+
+Get(bool insertTalks = false)
+
+when this variables becomes optional, it understands that i is about a query string
+
+### Search
+
+We just created another Get method, with a new parameters and a new Attribute ([HttpGet("search")])
+Then, we just used the pre-existing method created by the teacher, which he included in the Repository.
+
+
+### What we've learned
+
+Error handling in an HTTP way
+
+Using IActionResult and ActionResult to serializing objects into JSON
+
+Query strings are useful for declaring format or searching. 
