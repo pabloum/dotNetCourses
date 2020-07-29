@@ -107,7 +107,7 @@ namespace CoreCodeCamp.Controllers
                     return Created(location, _mapper.Map<CampModel>(camp));
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database failure");
             }
