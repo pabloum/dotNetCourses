@@ -93,3 +93,26 @@ In our example:
 
 
 ### Versioning with headers
+
+In StartUp.cs
+
+ApiVersionReader:
+
+```
+services.AddApiVersioning(opt => {
+    opt.AssumeDefaultVersionWhenUnspecified = true;
+    opt.DefaultApiVersion = new ApiVersion(1, 1);
+    opt.ReportApiVersions = true;
+    //opt.ApiVersionReader = new QueryStringApiVersionReader(); // By default, and the strign is "api-version"
+    //opt.ApiVersionReader = new QueryStringApiVersionReader("ver"); // If you just want to change the string
+    opt.ApiVersionReader = new HeaderApiVersionReader("X-Version"); // Name of the header.
+});
+```
+
+
+You would want to avoid this because it adds an extra level of complexity, if the user of your api is a newby for example. Or even if he's an expert, it would add more complexity to the written code.
+
+Talk with your clients
+
+
+### Using multiple versioning methods
