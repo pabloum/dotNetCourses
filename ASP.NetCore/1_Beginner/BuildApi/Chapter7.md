@@ -116,3 +116,11 @@ Talk with your clients
 
 
 ### Using multiple versioning methods
+
+Specify just one. One or the other. Query or header. Don't use both, or you'll get an ambiguous error response if you call the endpoint with different versions on querystring and header
+
+
+
+### URL Versioning
+
+The author thinks this is a very very bad idea. But widely used, so it is worth the learning

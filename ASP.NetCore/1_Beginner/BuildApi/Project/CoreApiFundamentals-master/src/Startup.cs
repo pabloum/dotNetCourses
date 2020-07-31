@@ -31,7 +31,11 @@ namespace CoreCodeCamp
             opt.ReportApiVersions = true;
             //opt.ApiVersionReader = new QueryStringApiVersionReader(); // By default, and the strign is "api-version"
             //opt.ApiVersionReader = new QueryStringApiVersionReader("ver"); // If you just want to change the string
-            opt.ApiVersionReader = new HeaderApiVersionReader("X-Version"); // Name of the header.
+            //opt.ApiVersionReader = new HeaderApiVersionReader("X-Version"); // Name of the header.
+            opt.ApiVersionReader = ApiVersionReader.Combine(
+                new HeaderApiVersionReader("X-Version"), // Name of the header.
+                new QueryStringApiVersionReader("version", "ver")
+            );
         });
 
 
