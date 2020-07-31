@@ -84,3 +84,12 @@ How to call an specific version:
 
 
 ### Versioning controllers.
+
+Duplicate controller. You would have a lot o repeated code, but you could have the power to edit different versions.
+
+In our example:
+      Camps2Controller
+      CampsController
+
+
+### Versioning with headers
