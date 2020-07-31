@@ -124,3 +124,47 @@ Specify just one. One or the other. Query or header. Don't use both, or you'll g
 ### URL Versioning
 
 The author thinks this is a very very bad idea. But widely used, so it is worth the learning
+
+http://localhost:6600/api/v1/camps
+
+The reason the author does not like this, is that there is no good rollover.
+Meaning that the user is forced to always specify the version he's trying to reach. There's no optional part of this.
+
+This tends to be fragile
+
+Two changes:
+
+1. opt.ApiVersionReader = new UrlSegmentApiVersionReader();
+2. [Route("api/v{version:apiVersion}/[controller]")] -> This atrribute to the class.
+
+And you'll need to do that in all of your controllers.
+
+
+
+### Versioning conventions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

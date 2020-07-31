@@ -36,6 +36,7 @@ namespace CoreCodeCamp
                 new HeaderApiVersionReader("X-Version"), // Name of the header.
                 new QueryStringApiVersionReader("version", "ver")
             );
+            //opt.ApiVersionReader = new UrlSegmentApiVersionReader(); // Remember to change the routes. 
         });
 
 
