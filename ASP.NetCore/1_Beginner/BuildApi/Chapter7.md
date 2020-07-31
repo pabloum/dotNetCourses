@@ -26,7 +26,7 @@ API versioning is harder
   - Not all of them are recommended
   - You must find a mechanism that works for your organization.
 
-  BUT REMEMBER: You're serving your clients . . .  not yourselves. 
+  BUT REMEMBER: You're serving your clients . . .  not yourselves.
 
 ### Types of versioning
 
@@ -67,7 +67,7 @@ Edit AddMvc:
 `services.AddMvc(opt => opt.EnableEndpointRouting = false)
         .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);`
 
-### Versioning actions
+### Versioning actions. i.e through methods
 
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
@@ -78,3 +78,9 @@ public class ...
 
     [MapToApiVersion("1.1")]
     publi Get11 { ... }
+
+How to call an specific version:
+    http://localhost:6600/api/camps/atl2018?api-version=1.0
+
+
+### Versioning controllers.
