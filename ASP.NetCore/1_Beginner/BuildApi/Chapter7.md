@@ -143,6 +143,21 @@ And you'll need to do that in all of your controllers.
 
 ### Versioning conventions
 
+Allow to centralize all your versioning information, and not include it in all your controllers.
+
+```
+// This is the same as what we did with the attributes.
+opt.Conventions.Controller<TalksController>()
+    .HasApiVersion(1, 0)
+    .HasApiVersion(1, 1)
+    .Action(c => c.Delete(default(string), default(int)))
+        .MapToApiVersion(1,1)
+;
+```
+
+### Other versioning methods
+
+(outside of the scope of this course)
 
 
 

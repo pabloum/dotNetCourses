@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CoreCodeCamp.Controllers;
 using CoreCodeCamp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.Versioning.Conventions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -37,6 +39,14 @@ namespace CoreCodeCamp
                 new QueryStringApiVersionReader("version", "ver")
             );
             //opt.ApiVersionReader = new UrlSegmentApiVersionReader(); // Remember to change the routes. 
+
+            // This is the same as what we did with the attributes.
+            opt.Conventions.Controller<TalksController>()
+                .HasApiVersion(1, 0)
+                .HasApiVersion(1, 1)
+                .Action(c => c.Delete(default(string), default(int)))
+                    .MapToApiVersion(1,1)
+            ;
         });
 
 
