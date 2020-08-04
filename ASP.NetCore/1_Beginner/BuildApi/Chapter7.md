@@ -159,27 +159,19 @@ opt.Conventions.Controller<TalksController>()
 
 (outside of the scope of this course)
 
+1. Versioning Library:
+    - Versioning by namespaces.
+    - Versioning by content type
+    - Writing your own Reader
+    - Writing your own Resolvers
+
+It's up to you how crazy and how complex you wanna get. All of these may be very domain specific
 
 
+### What  we've learned
 
+Api versioning supported by Microsoft. It is not just another random library out there.
 
+You can version your URLs and payloads
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+You can choose attribute or conventions for versioning configuration.
