@@ -17,7 +17,7 @@ File.ReadAllLines(path);
 
 .Skip() and .Take() are very useful for paging operations. When you need to display records 10 to 20 of a large set of records. Think about a web page that doesnt display all records at once, but display just 10 records at a time, per page.
 
-```
+```cs
 main {
   // 1st way
   var query = from line in File.ReadAllLines(path).Skip(1)
@@ -35,7 +35,7 @@ main {
       .ToList();
 }
 
-private static Car TransformToCar(string arg1, int arg2)
+private static Car TransformToCar(string line)
 {
   var columns = line.Split(',');
 
@@ -54,7 +54,7 @@ private static Car TransformToCar(string arg1, int arg2)
 
 ### Finding most efficient cars:
 
-```
+```cs
 // Sort the most fuel efficient cars.
 var query = cars.OrderByDescending(car => car.Combined)
                 .ThenBy(car => car.Name); // This is a secondary option for ordering. Do not use OrderBy again for a secondary order.

@@ -21,7 +21,8 @@ namespace Linq.Ch5.Cars
                             .Select(c => new { // This is an anonymous type.  
                                 Manufacturer = c.Manufacturer,
                                 c.Name, // Shortcut. No need to use the name. COmpiler just undertands to use the same name
-                                c.Combined
+                                c.Combined,
+                                c.Cylinders
                             });
 
 
