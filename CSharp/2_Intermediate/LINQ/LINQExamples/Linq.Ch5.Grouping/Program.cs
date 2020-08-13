@@ -12,15 +12,26 @@ namespace Linq.Ch5.Grouping
             Console.WriteLine("Hello World!");
 
 
-            var cars          = ProcessCars("fuel.csv");
-            //var manufacturers = ProcessManufacturers("manufacturer.csv");
-
+            var cars          = ProcessCars("./fuel.csv");
+            var manufacturers = ProcessManufacturers("manufacturers.csv");
 
         }
 
-        private static object ProcessManufacturers(string file)
+        private static List<Manufacturer> ProcessManufacturers(string path)
         {
-            throw new NotImplementedException();
+
+            return  File.ReadAllLines(path)
+                        .Skip(1)
+                        .Where(l => l.Length > 1)
+                        .Select(
+                            line => {
+                                var columns = line.Split(",");
+                                return new Manufacturer {
+                                    Name = columns[0],
+                                    HeadQuarters = columns[1],
+                                    Year = int.Parse(columns[2])
+                                };
+                            }).ToList();
         }
 
         private static List<Car> ProcessCars(string path)
