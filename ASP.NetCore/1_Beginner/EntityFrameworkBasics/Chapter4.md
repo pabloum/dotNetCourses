@@ -28,3 +28,7 @@ Now, in code, we must create 3 entities:
     3. Battle
 
 EF Core WON'T map directly without the join entity. A lot of the old magic, has gone.
+
+### Setting up many-to-many relationships.
+
+Check the files: Samurai.cs, Battle.cs, SamuraiBattle.cs, AND DbContext (SamuraiContext for this project)
