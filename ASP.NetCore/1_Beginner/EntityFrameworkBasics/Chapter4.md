@@ -13,3 +13,18 @@ Adding one-to-one relationship
 Migrating the database to reflect model changes
 
 ## Understanding nature of many-to-many in EF-Core
+
+In previous versions of EF, there was magic in many to many relationships.
+
+Now, in the latest version EF Core 6, one must use a "join Entity".
+
+Example:
+
+Samurai - Battle -> Many-to-Many
+
+Now, in code, we must create 3 entities:
+    1. Samurai
+    2. Samurai Battle    ("Join entity")
+    3. Battle
+
+EF Core WON'T map directly without the join entity. A lot of the old magic, has gone.
