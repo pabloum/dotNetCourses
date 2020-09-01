@@ -36,3 +36,13 @@ Check the files: Samurai.cs, Battle.cs, SamuraiBattle.cs, AND DbContext (Samurai
 ### Adding a One-to-One relationship.
 
 Dependent End of 1:1 is Always optional
+
+### Visualizing how EF Core sees your model
+
+You need DGML editor and EF Core Power Tools extension.
+
+You need to change SamuraiApp.Data.csproj
+    - <TargetFrameworks>netcoreapp3.0;netstandard2.0</TargetFrameworks>
+    - <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+
+Then, right click on the Data project, select EF Core Tools, then add DbContext model diagram. 
