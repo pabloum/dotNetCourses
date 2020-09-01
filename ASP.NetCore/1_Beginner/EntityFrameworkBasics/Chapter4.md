@@ -45,4 +45,17 @@ You need to change SamuraiApp.Data.csproj
     - <TargetFrameworks>netcoreapp3.0;netstandard2.0</TargetFrameworks>
     - <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
 
-Then, right click on the Data project, select EF Core Tools, then add DbContext model diagram. 
+Then, right click on the Data project, select EF Core Tools, then add DbContext model diagram.
+
+### Controlling Table names with Mappgings
+
+Another way of naming the Table in the DB
+In DbContext:
+
+```cs
+void OnModelCreating(ModelBuilder modelBuilder){
+  modelBuilder.Entity<Horse>().ToTable("Horses");
+}
+```
+
+Note: If you have a One-to-One relationship, you could just configure it as additional columns on the main table. In this case, you could be creating Horse_Name. But, that's advanced configuration.
