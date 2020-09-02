@@ -42,7 +42,48 @@ Value of LUIS:
   LUIS moves complexity and unnecessary logic from the application layer.
 
 
-## Intents ()
+## Intents (intenciones)
+
+An intent indicates an action to take.
+
+An intent describes the action that the user wants your application to do.
+
+You can think of an intent as a command or, from a language perspective, a verb.
+
+e.g.  
+      "Book a flight" -> intent
+
+Once an intent has been provided, LUIS uses highly advanced machine learning algorithms that actively learn based on intents submitted.
+
+ML is used as LUIS needs to determine by making a best guess at what the user wants when submitting a request. If an intent is not clear, LUIS will ask the developer which intent goes with which request. And using the developer's feedback, LUIS actively learns what those intents really mean.
+
+LUIS provides default and pre-built intents. For the developers to quickly get up and running with the service.
+Pre-built intents are in a category called domains.
+
+
+pre-built Domains examples:
+  - Calendar
+  - Communication
+  - Email
+  - HomeAutomation
+  - Notes
+  - Places - business, restaurants, addresses, public places, institutions  -
+  - Restaurants Reservations
+  - ToDo
+  - Utilities
+  - Wheather.
+  - Web domain.
+
+
+Intents examples:
+
+  1.  None    -   Default intent for LUIS. When LUIS does not know what to do with the user's input
+  2.  Calendar.CheckAvailability      -     Finds availability for an appointment.
+  3.  Calendar.Cancel
+  4.  Calendar.Confirm
+  5.  Calendar.FindDuration
+  6. And many more. Check LUIS documentation.
+
 
 ## Entities (entidades)
 
