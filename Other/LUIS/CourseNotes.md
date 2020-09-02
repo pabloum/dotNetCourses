@@ -87,4 +87,69 @@ Intents examples:
 
 ## Entities (entidades)
 
+Remember: Intents represent actions
+
+Then entities are the thing that your LUIS-enabled application will be taking action on.
+
+Entities are essential for yout application to work with LUIS.
+
+They help to improve intents that have been provided.
+
+### Entities - Enhancing intents
+
+  Entities allow us to narrow down the scope of user intents
+
+  e.g. "To book a flight to Dubai"
+       "To book a hotel in Romei"
+
+       To book a flight; a hotel -> intents
+       to Dubai ; in Rome  -> entities
+
+### Entity types.
+
+  1. Simple - It is also the most common one.
+      e.g. "I want to *book a flight* to _Dubai_"
+      Intent: book a flight
+      Entity: Dubai
+
+  2. Composite  -  contain multiple entities
+      e.g. "I want to *book a flight* from _Dubai_ to _Doha_"
+      Intent: book a flight
+      Entity: Doha Dubai
+
+  3. List  -  various entities that are all synonims of each other
+      e.g. "I want to *book a flight* from _Amsterdam_"
+      e.g. "I want to *book a flight* from _Schiphol_"
+      e.g. "I want to *book a flight* from _AMS_"
+      Intent: book a flight
+      Entity: Amsterdam, Schiphol, AMS
+
+  4. Pattern.Any   -   When trying to improve the recognition of an entity.
+      e.g. "Can I *book a flight* on a _Beluga_?"
+      Intent: book a flight
+      entity: {TypeOfPlane}
+
+  5. Regex   -  uses a regular expression.
+      e.g. "I want to *book a flight* _VY1233_"
+      Intent: book a flight
+      entity: Number of flight: (VY[0-9]{4}) to determine the entity.
+
+  6. Prebuilt   -   Provided by LUIS out-of-the-box. When needed and possible, it is better to use prebuilt thab Simple entity. Remember not to reinvent the wheel
+      e.g. Number, Ordinal, Temperature, Dimension, Money, Age, Percentage, Email, URL, Phone Number
+
+### Machine Learning Phrases.
+
+Group of words or values with similar meaning.
+
+Machine learned list:
+
+For example, types of planes can be placed in this list: A380, 737, 787... etc
+
+Good candidates fot these lists:  Industry-specific (like the airplanes) or specific corporate terminology.
+
+Can be also used for grouping synonyms and non-synonyms  
+
+Phrases lists are intended for terms that LUIS might have difficulty recognizing.
+Phrases lists a great way to enhance LUIS's ability to recognize additional terms that otherwise would not have been recognized
+
 ## Utterances (Declaraciones)
