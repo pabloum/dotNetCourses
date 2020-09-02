@@ -152,4 +152,13 @@ Can be also used for grouping synonyms and non-synonyms
 Phrases lists are intended for terms that LUIS might have difficulty recognizing.
 Phrases lists a great way to enhance LUIS's ability to recognize additional terms that otherwise would not have been recognized
 
+
 ## Utterances (Declaraciones)
+
+If intents are thought as a verb and entities as nouns, then utterances are words or phrases that bind both together.
+
+Utterances uses both intents and entities to help LUIS make conclusions on user requests. So, we've been using utterances all this time, in previous examples, but we didn't call them that way. We simply saw them as sentences.
+
+Utterances are the glue that bind Intents and entities.
+
+Utterances are another way to help LUIS learn. Gives the LUIS flexibility to understand what users want.
