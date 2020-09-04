@@ -98,6 +98,7 @@ You can also specify the maximum number of batches when you're configuring the m
 ```cs
 public void OnConfiguring(){
   optionsBuilder.UseLoggerFactory(ConsoleLoggerFactory)  // remember to add this new Extension Method
+                .EnableSensitiveDataLogging()  // only for safe scenarios
                 .UseSqlServer(connectionString, options => optionns.MaxBatchSize(150));
 }
 });
@@ -142,3 +143,77 @@ foreach(var samurai in samurais){
   Console.WriteLine(samurai.Birthday);
 }
 ```
+
+
+### Filtering in queries.
+
+context.Samurais.Where(s => s.Name = "Simpson").ToList();
+context.Samurais.Where(s => s.Contains("Sim")).ToList();
+context.Samurais.Where(s => EF.Functions.Like(s.Name, "Sim%")).ToList();
+
+If you hardcode the what you send, EF will nor parameterize. If you send the value through a variable, it will parameterize.
+
+
+### Aggregating in Queries
+
+These execute immediately
+
+All LINQ to Entities Execution Methods operators
+
+ToList()             ToListAsync()
+First()              FirstAsync()
+FirstOrDefault()     FirstOrDefaultAsync()
+Single()             SingleAsync()
+SingleOrDefault()    SingleOrDefaultAsync()
+Last()               LastAsync()                // Only works if it was previously orderd (OrderBy())
+LastOrDefault()      LastOrDefaultAsync()       // Only works if it was previously orderd (OrderBy())
+Count()              CountAsync()
+LongCount()          LongCountAsync()
+Min(), Max()         MinAsync(), MaxAsync()
+Average(), Sum()     AverageAsync(), SumAsync()
+                     AsAsyncEnumerable()
+
+Not LINQ, but DbSet method that will execute.
+
+Find(keyValue)       FindAsync(keyValue)
+
+
+### Updating simple objects
+
+* Update one
+
+```cs
+  var samurai = context.Samurais.FirstOrDefault();
+  samurai.Name = "Changed Name";
+  context.SaveChanges()
+```
+
+* Update several
+```cs
+    var samurais = context.Samurais.Skip(1).Take(3).ToList();
+    samurais.ForEach(s => s.Name += "San")
+    context.SaveChanges()
+```
+
+
+
+### Deleting simple objects
+
+Might not look intuitive at first.
+
+```cs
+  var id = 99;
+  var samurai = context.Samurais.Find(id);
+  context.Samurais.Remove(samurai);
+  context.SaveChanges()
+```
+
+Delete range:
+```cs
+context.Samurais.RemoveRange(ListOfSamurais);
+context.SaveChanges()
+```
+
+you may also call Remove() and RemoveRange() directly on `context`
+
+If coding this is representing a pain, the author would recommend using Stored Procedures.
