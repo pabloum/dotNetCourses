@@ -102,3 +102,43 @@ public void OnConfiguring(){
 }
 });
 ```
+
+
+### Understanding the Query workflow  
+
+Query
+  -> EF Core reads model and works with providet to work out SQL
+      -> Send SQL to database
+          -> Receives tabular results
+              -> Materializes results as objects
+                  -> Adds tracking details to DbContext instance.
+
+Remember, there is lazy execution.
+
+So, be careful.
+
+This is fine
+```cs
+foreach(var samurai in context.Samurais){
+  Console.WriteLine(samurai);
+}
+```
+
+This could bring side effects
+```cs
+foreach(var samurai in context.Samurais){
+  Console.WriteLine(samurai.Name);
+  Console.WriteLine(samurai.Id);
+  Console.WriteLine(samurai.Birthday);
+}
+```
+
+Better  bring first the results, then iterate
+```cs
+var samurais = context.Samurais.ToList();
+foreach(var samurai in samurais){
+  Console.WriteLine(samurai.Name);
+  Console.WriteLine(samurai.Id);
+  Console.WriteLine(samurai.Birthday);
+}
+```
