@@ -217,3 +217,36 @@ context.SaveChanges()
 you may also call Remove() and RemoveRange() directly on `context`
 
 If coding this is representing a pain, the author would recommend using Stored Procedures.
+
+
+
+### Persisting data in disconnected scenarios.
+
+Meaning, each app instatiates its own DbContext, and then dispose it after using it.
+
+In disconnected scenarios it is up to you to inform the context about the object state.
+
+So, when something is not tracking, i.e. disconnected, given the case that you update something, then the resulting SQL will be uptating the entire record, even if not all columns were changed. That happens because the EF understands that something changed but it is not sure exactly what.
+
+There is another course of Julie Lerman. Entity Framework in the enterprise. Contains advanced architectural patterns.
+
+### Enhancing performance in Disconnected Apps with No-tracking Settings
+
+Change tracking is expensive.
+
+No track queries:
+  1. context.Samurais.AsNoTracking().FirstOrDefault();
+      AsNoTracking() returns a query. Not a DbSet(). i.e. you cannot append methods such as Find to AsNoTracking, however you can still use LINQ methods.
+  2. Edit the class:
+      e.g.
+      ```cs
+      public class SamuraiContextDbNoTrack : DbContext
+      {
+        public SamuraiContextDbNoTrack()
+        {
+          ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        }
+      }
+      ```
+
+      In this way, every instance of this class won't be tracking :) 
