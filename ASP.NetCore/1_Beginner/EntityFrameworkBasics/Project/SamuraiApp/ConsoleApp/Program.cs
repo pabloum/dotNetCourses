@@ -19,6 +19,8 @@ namespace ConsoleApp
                 context.Database.EnsureCreated();
             }
 
+            InsertSamuraiWithQuotes();
+
             GetSamurais("Before Add: ");
             AddSamurai();
             InsertMultipleSamurais();
@@ -75,6 +77,12 @@ namespace ConsoleApp
             }
         }
 
+        private static void AddBattle()
+        {
+
+        }
+
+
         private static void GetSamurais(string text)
         {
             using (var context = new SamuraiContext())
@@ -87,5 +95,40 @@ namespace ConsoleApp
                 }
             }
         }
+
+
+        private static void InsertSamuraiWithQuotes()
+        {
+            var samurai = new Samurai
+            {
+                Name = "poca luz",
+                Quotes = new List<Quote>
+                {
+                    new Quote { Text = "Ich weiss es nicht" }
+                }
+            };
+
+            using (var context = new SamuraiContext())
+            {
+                context.Samurais.Add(samurai);
+                context.SaveChanges();
+            }
+
+        }
+
+        private static void AddQuoteToExistingSamurai()
+        {
+            using (var context = new SamuraiContext())
+            {
+                var samurai = context.Samurais.FirstOrDefault();
+                samurai.Quotes.Add(new Quote
+                {
+                    Text = "Aliens are not here"
+                });
+                context.SaveChanges();
+            }
+        }
+
+
     }
 }
