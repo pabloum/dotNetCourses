@@ -154,5 +154,22 @@ But propertiesof an anonymous types that are entities WILL BE tracked.
 
 ### Loading related data for objects already in memory.
 
+
 ```cs
+var samurai = context.Samurais.FirstOrDefault(s => s.Name == "VeroRo");
+context.Entry(samurai).Collection(s => s.Quotes).Load();
+context.Entry(samurai).Reference(s => s.Horse).Load(); // Horse is a one to one relationship.
 ```
+
+Now, these new properties will be part of the `samurai` object
+
+Notes:
+
+You can add filters with Query():
+```cs
+var samurai = context.Samurais.FirstOrDefault(s => s.Name == "VeroRo");
+context.Entry(samurai).Collection(s => s.Quotes).Query().Where(/*Your filter*/).Load();
+```
+
+
+Lazy loading is disabled by default. => no much further detail from the author
