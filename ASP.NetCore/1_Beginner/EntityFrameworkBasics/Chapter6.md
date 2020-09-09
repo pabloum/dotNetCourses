@@ -215,3 +215,61 @@ using (var newContext = new SamuraiContext()) {
   newContext.SaveChanges();
 }
 ```
+
+
+
+### Creating and changing Many-to-Many relationships
+
+Remember relationship between Samurais and Battles -> Many to Many.
+  - We have a table SamuraiBattle, but we do not have that entity in the DbContext.
+
+However, EF Core know how to handle it:
+
+```cs
+  var sbJoin = new SamuraiBattle { SamuraiId = 1, BattleId = 3 }
+  context.Add(sbJoin);
+  context.SaveChanges();
+```
+
+e.g.
+```cs
+  var battle  = context.Battles.Find(1);
+  battle.SamuraiBattles.Add(new SamuraiBattle { SamuraiId = 1 } );
+  context.SaveChanges();
+```
+
+
+How to remove it?
+```cs
+  var sbJoin = new SamuraiBattle { SamuraiId = 1, BattleId = 3 }
+  context.Remove(sbJoin);
+  context.SaveChanges();
+```
+
+How to modify?
+
+A little trickier, but it will depend on your business logic. You can either delete the previous record in JoinTable, and then add a new one, or literally update it. Remember that the many to many can be treated a 2 different relationships of one-to-many
+
+### Querying across Many-to-Many relationships
+
+* It helps to think it as Querying  parent-child-grandchild: Include().ThenInclude()
+```cs
+  // This is annoying
+  var samuraiWithBattle = context.Samurais
+                                 .Include(s => s.SamuraiBattles)
+                                 .ThenInclude(sb => sb.Battle)
+                                 .FirstOrDefault(samurai => samurai.Id == 2);
+```
+
+* Another way is projecting. It is cleaner, because you wouldn't have to access battles through the SamuraiBattle entity
+
+```cs
+  var samuraiWithBattle = context.Samurais
+                                 .Where(s => s.Id == 2)
+                                 .Select(s => new
+                                 {
+                                    Samurai = s,
+                                    Battles = s.SamuraiBattles.Select(sb => sb.Battle)
+                                 })
+                                 .FirstOrDefault();
+```
