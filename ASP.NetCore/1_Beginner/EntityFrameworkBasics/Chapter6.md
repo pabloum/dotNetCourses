@@ -173,3 +173,45 @@ context.Entry(samurai).Collection(s => s.Quotes).Query().Where(/*Your filter*/).
 
 
 Lazy loading is disabled by default. => no much further detail from the author
+
+
+
+
+### Using related data to filter objects.
+
+You may use related data to filter, without necessarily retrieving them,
+```cs
+var samurai = context.Samurais..Where(s=>s.Quotes.Any(q=>q.Text.Contains("happy"))).ToList();
+```
+
+But, be careful with the generated SQL. Sometimes, it might be more efficient to use SQL Stored Procedures or Views.
+
+
+### Modifying related data.
+
+* While EF Core is tracking
+
+```cs
+var samurai = context.Samurais.Include(s => s.Quotes).FirstOrDefault();
+samurai.Quotes[0].Text = "Did you hear that?"; // I can edit
+context.Quotes.Remove(samurai.Quotes[2]);      // or delete
+context.SaveChanges();
+```
+
+Things are pretty simple when the change tracker is in scope and watching what's happening with the objects.
+
+
+* While EF Core is NOT tracking. Change tracker disconnected
+
+Try to use Entry() gives you more control. It focus only on what you passed in.
+
+```cs
+var samurai = context.Samurais.Include(s => s.Quotes).FirstOrDefault();
+var quote = samurai.Quotes[0];
+quote.Text += "Did you hear that?"; // I can edit
+using (var newContext = new SamuraiContext()) {
+  // newContext.Quotes.Update(quote); // This could have side effects
+  newContext.Entry(quote).State = EntityState.Modified; // Entry() gives you more control. It focus only on what you passed in.
+  newContext.SaveChanges();
+}
+```
