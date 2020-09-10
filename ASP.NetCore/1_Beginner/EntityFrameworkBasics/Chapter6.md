@@ -273,3 +273,37 @@ A little trickier, but it will depend on your business logic. You can either del
                                  })
                                  .FirstOrDefault();
 ```
+
+
+
+### Persisting Data in One-to-One Relationships
+
+```cs
+var horse = new Horse { Name = "Scout", SamuraiId = 2 };
+context.Add(horse);
+context.SaveChanges();
+```
+
+```cs
+var samurai = context.Samurais.Find(2);
+samurai.Horse = new Horse { Name = "Flamingo"};
+context.SaveChanges();
+```
+
+Or use Attach() for non-tracking scenarios.
+
+* For modifying: pay attention if the Horse can exist without Samurai, i.e. if the FK is nullable. This might affect your business logic.
+
+
+
+### Querying One-to-One
+
+This is pretty straight-forward. You can include (`Include()`) or project (`Select()`)
+
+When the DbSet doesn't exist, you have the option to use .Set<Entity>()
+
+e.g.
+
+```cs
+var horse = context.Set<Horse>().Find(3);
+```
