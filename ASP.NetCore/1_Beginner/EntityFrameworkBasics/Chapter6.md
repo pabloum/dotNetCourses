@@ -323,3 +323,8 @@ var samuraisForClan = context.Samurais.Where(s => s.Clan.Id == 3).ToList();
 ```
 
 You would need to be more creative.
+
+
+### More details
+
+Consult course Mappings course of Julie Lerman
