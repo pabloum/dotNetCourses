@@ -307,3 +307,19 @@ e.g.
 ```cs
 var horse = context.Set<Horse>().Find(3);
 ```
+
+
+### Working with relationships that has minimal properties.
+
+"Clean" entities may be more difficult to work with, requiring more advanced skills with EF Core.
+
+Example: Clans does not have a list of Samurais
+
+```cs
+//var clan = context.Clans.Include(c => c.???); // This wont work
+// [--]
+var clan = context.Clans.Find(2);
+var samuraisForClan = context.Samurais.Where(s => s.Clan.Id == 3).ToList();
+```
+
+You would need to be more creative.
