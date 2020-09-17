@@ -35,3 +35,23 @@ Steps to use it:
       migrationsBuilder.Sql(@"DROP FUNCTION dbo.EarliestBattleFoughtBySamurai");
       ```
 You can create the views in the same way
+
+
+### Using keyless entities to map to views
+
+There is another way to map entities so that EF Core will always consider them to be read-only. What's really special about this, is that it allows you to map to views and tables that have no primary key.
+
+
+Keyless ~ without PK
+
+
+So, if you really want to use a keyless entity, create the domain, dto, whatever you need. Then, create the DbSet in the DbContext. But, YOU MUST SPECIFY that it does not have a key, inside the `OnModelCreating()` with the method `HasNoKey()`. You also have to use the method `ToView()` to tell EF that the View already exists. In that way, EF wont create it every time you add a migration
+
+```cs
+void OnModelCreating(){
+  modelBuilder.Entity<SamuraiBattleStat>.HasNoKey().ToView("SamuraiBattleStats"); // ToView("NameOfTheView")
+}
+```
+
+NOTE !! EF Core WON'T track an entity marked with HasNoKey(). So, you won't have to worry about using AsNoTracking()
+If you try to force it to track, EF Core will simply ignore that.
