@@ -55,3 +55,14 @@ void OnModelCreating(){
 
 NOTE !! EF Core WON'T track an entity marked with HasNoKey(). So, you won't have to worry about using AsNoTracking()
 If you try to force it to track, EF Core will simply ignore that.
+
+
+
+### Querying the databse views
+
+```cs
+var stats = _context.SamuraiBattleStats.ToList();
+var firstStat = _context.SamuraiBattleStats.FirstOrDefault();
+var sampsonStat = _context.SamuraiBattleStats.Where(a => a.Name == "Sampson").FirstOrDefault();
+```
+Be careful. Sometimes, the compiler may not say errors and an exception might be thrown at runtime. e.g. when you try to use .Find(4)
