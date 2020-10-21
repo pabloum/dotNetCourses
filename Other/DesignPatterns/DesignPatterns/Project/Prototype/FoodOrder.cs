@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Prototype_Pattern
 {
@@ -51,6 +52,17 @@ namespace Prototype_Pattern
             Console.WriteLine(" Order Contents: " + string.Join(",", OrderContents) + "\n" );
             Console.WriteLine("");
             Console.WriteLine("");
+        }
+    }
+
+    public class PrototypeManager
+    {
+        private Dictionary<string, Prototype> _protypeLibrary = Dictionary<string, Prototype>;
+
+        public Prototype this[string key]
+        {
+            get { return _protypeLibrary[key]; }
+            set { _protypeLibrary.Add(key, value); }
         }
     }
 }

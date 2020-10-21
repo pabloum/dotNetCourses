@@ -26,6 +26,18 @@ namespace DesignPatterns
 
             savedOrder.Debug();
             clonedOrder.Debug();
+
+
+            Console.WriteLine("--------- Prototype Manager ---------");
+            PrototypeManager prototypeManager = new PrototypeManager();
+
+            prototypeManager["21/10/2020"] = new FoodOrder("Verónica",
+                                                           true,
+                                                           new string[] { "sushi", "agua" },
+                                                           new OrderInfo(9995));
+            Console.WriteLine("Mnager clone: ");
+            FoodOrder managerOrder = (FoodOrder)prototypeManager["21/10/2020"].DeepCopy();
+            managerOrder.Debug();
         }
     }
 }
