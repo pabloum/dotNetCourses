@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Behavioral", "Behavioral", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prototype", "..\Prototype\Prototype.csproj", "{FC3A94D3-A223-47AF-9896-90166E649EFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facade_Pattern", "..\Facade_Pattern\Facade_Pattern.csproj", "{97CA45EA-8A7E-4DFB-8D5D-C9716A30FF13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,12 +29,17 @@ Global
 		{FC3A94D3-A223-47AF-9896-90166E649EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC3A94D3-A223-47AF-9896-90166E649EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC3A94D3-A223-47AF-9896-90166E649EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97CA45EA-8A7E-4DFB-8D5D-C9716A30FF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97CA45EA-8A7E-4DFB-8D5D-C9716A30FF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97CA45EA-8A7E-4DFB-8D5D-C9716A30FF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97CA45EA-8A7E-4DFB-8D5D-C9716A30FF13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FC3A94D3-A223-47AF-9896-90166E649EFF} = {E43F376F-8B08-4651-8CB8-50CB15DE1034}
+		{97CA45EA-8A7E-4DFB-8D5D-C9716A30FF13} = {79C9B857-783C-446F-BF9E-A1314D54AC37}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98A6D666-612E-4CA3-BA31-6D4077D420B8}

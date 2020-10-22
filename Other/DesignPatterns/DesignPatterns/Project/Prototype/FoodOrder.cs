@@ -57,7 +57,7 @@ namespace Prototype_Pattern
 
     public class PrototypeManager
     {
-        private Dictionary<string, Prototype> _protypeLibrary = Dictionary<string, Prototype>;
+        private Dictionary<string, Prototype> _protypeLibrary = new Dictionary<string, Prototype>();
 
         public Prototype this[string key]
         {

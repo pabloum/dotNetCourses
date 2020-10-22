@@ -1,4 +1,5 @@
 ﻿using System;
+using Facade_Pattern;
 using Prototype_Pattern;
 
 namespace DesignPatterns
@@ -7,10 +8,16 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
+            TestPrototype();
+            TestFacade();
+        }
+
+        static void TestPrototype()
+        {
             Console.WriteLine("--------- Original order: ---------");
-            FoodOrder savedOrder = new FoodOrder("Pablo", 
-                                                   false, 
-                                                   new string[] {"Pizza", "CocaCola", "Postre"},
+            FoodOrder savedOrder = new FoodOrder("Pablo",
+                                                   false,
+                                                   new string[] { "Pizza", "CocaCola", "Postre" },
                                                    new OrderInfo(1234));
             savedOrder.Debug();
 
@@ -38,6 +45,12 @@ namespace DesignPatterns
             Console.WriteLine("Mnager clone: ");
             FoodOrder managerOrder = (FoodOrder)prototypeManager["21/10/2020"].DeepCopy();
             managerOrder.Debug();
+        }
+
+        static void TestFacade()
+        {
+            Facade.DebugFirstApproach();
+            Facade.DebugSecondApproach();
         }
     }
 }
