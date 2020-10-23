@@ -10,7 +10,7 @@ namespace Facade_Pattern
     {
         public string GetCityFromCode(string zipCode)
         {
-            throw new NotImplementedException();
+            return "Medellín";
         }
     }
 }

@@ -9,9 +9,9 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            //TestPrototype();
+            TestPrototype();
             //TestFacade();
-            TestVisitor();
+            //TestVisitor();
         }
 
         static void TestPrototype()

@@ -10,7 +10,7 @@ namespace Facade_Pattern
     {
         public int GetTempFarenheit(string city)
         {
-            throw new NotImplementedException();
+            return 73;
         }
     }
 }

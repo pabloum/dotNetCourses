@@ -10,7 +10,7 @@ namespace Facade_Pattern
     {
         public int ConvertFarenheitToCelcius(int temperature)
         {
-            throw new NotImplementedException();
+            return ((temperature -32) * 5/9);
         }
     }
 }
