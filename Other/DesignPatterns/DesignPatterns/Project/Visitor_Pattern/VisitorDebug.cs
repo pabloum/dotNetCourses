@@ -18,22 +18,13 @@ namespace Visitor_Pattern
                 new Book(134, 19.99),
             };
 
+            var objectStructure = new ObjectStructure(items);
+
             var discountVisitor = new DiscountVisitor();
-
-            foreach (var item in items)
-            {
-                item.Accept(discountVisitor);
-            }
-
-            discountVisitor.Print();
-
             var salesVisitor = new SalesVisitor();
-            foreach (var item in items)
-            {
-                item.Accept(salesVisitor);
-            }
 
-            salesVisitor.Print();
+            objectStructure.ApplyVisitor(discountVisitor);
+            objectStructure.ApplyVisitor(salesVisitor);
         }
     }
 }
