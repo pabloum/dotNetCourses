@@ -1,22 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Prototype_Pattern
 {
-    public abstract class Prototype
-    {
-        public abstract Prototype ShallowCopy();
-        public abstract Prototype DeepCopy();
-        public abstract void Debug();
-    }
-    public class OrderInfo
-    {
-        public int Id { get; set; }
-        public OrderInfo(int id)
-        {
-            Id = id;
-        }
-    }
     public class FoodOrder : Prototype
     {
         public string CustomerName { get; set; }
@@ -52,17 +37,6 @@ namespace Prototype_Pattern
             Console.WriteLine(" Order Contents: " + string.Join(",", OrderContents) + "\n" );
             Console.WriteLine("");
             Console.WriteLine("");
-        }
-    }
-
-    public class PrototypeManager
-    {
-        private Dictionary<string, Prototype> _protypeLibrary = new Dictionary<string, Prototype>();
-
-        public Prototype this[string key]
-        {
-            get { return _protypeLibrary[key]; }
-            set { _protypeLibrary.Add(key, value); }
         }
     }
 }
