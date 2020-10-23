@@ -8,23 +8,32 @@ namespace Visitor_Pattern
 {
     public class VisitorDebug
     {
-        public void Debug(bool withVisitor = true)
+        public static void Debug()
         {
-            if (withVisitor)
+            List<IVisitableElement> items = new List<IVisitableElement>
             {
+                new Book(123, 65.50),
+                new Bike(234, 400.19),
+                new Book(124, 53.50),
+                new Book(134, 19.99),
+            };
 
-                List<object> items = new List<object>
-                {
-                    new Book(1234, 65.50),
-                    new Bike(1234, 400.19),
-                    new Book(1234, 53.50),
-                    new Book(1234, 19.99),
-                };
-            }
-            else
+            var discountVisitor = new DiscountVisitor();
+
+            foreach (var item in items)
             {
-                Console.WriteLine("Nothing here");
+                item.Accept(discountVisitor);
             }
+
+            discountVisitor.Print();
+
+            var salesVisitor = new SalesVisitor();
+            foreach (var item in items)
+            {
+                item.Accept(salesVisitor);
+            }
+
+            salesVisitor.Print();
         }
     }
 }

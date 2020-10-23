@@ -9,7 +9,7 @@ namespace Visitor_Pattern
 
         public Item(int id, double price)
         {
-            Id = Id;
+            Id = id;
             Price = price;
         }
 

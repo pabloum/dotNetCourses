@@ -28,7 +28,7 @@ namespace Visitor_Pattern
             if (bike.Price < 200.00)
             {
                 discount = bike.GetDiscount(0.10);
-                Console.WriteLine($"DISCOUNTED: Bike {bike.Id} is now {bike.Price - discount}");
+                Console.WriteLine($"DISCOUNTED: Bike #{bike.Id} is now {bike.Price - discount}");
             }
             else
             {
@@ -47,6 +47,27 @@ namespace Visitor_Pattern
         public void Print()
         {
             Console.WriteLine($"\n You saved a total of {_savings} on today's orders");
+        }
+    }
+
+    public class SalesVisitor : IVisitor
+    {
+        private int BookCount;
+        private int BikeCount;
+
+        public void Print()
+        {
+            Console.WriteLine($"\n You sold {BookCount + BikeCount} items today: {BookCount} books and {BikeCount} bikes");
+        }
+
+        public void VisitBike(Bike bike)
+        {
+            BikeCount++;
+        }
+
+        public void VisitBook(Book book)
+        {
+            BookCount++;
         }
     }
 }

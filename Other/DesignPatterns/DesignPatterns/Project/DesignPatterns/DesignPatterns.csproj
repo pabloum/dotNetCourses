@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Facade_Pattern\Facade_Pattern.csproj" />
     <ProjectReference Include="..\Prototype\Prototype.csproj" />
+    <ProjectReference Include="..\Visitor_Pattern\Visitor_Pattern.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using Facade_Pattern;
 using Prototype_Pattern;
+using Visitor_Pattern;
 
 namespace DesignPatterns
 {
@@ -8,8 +9,9 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            TestPrototype();
-            TestFacade();
+            //TestPrototype();
+            //TestFacade();
+            TestVisitor();
         }
 
         static void TestPrototype()
@@ -49,8 +51,13 @@ namespace DesignPatterns
 
         static void TestFacade()
         {
-            Facade.DebugFirstApproach();
+            //Facade.DebugFirstApproach();
             Facade.DebugSecondApproach();
+        }
+
+        static void TestVisitor()
+        {
+            VisitorDebug.Debug();
         }
     }
 }
