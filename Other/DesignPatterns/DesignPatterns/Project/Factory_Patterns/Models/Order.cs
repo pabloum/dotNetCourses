@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Factory_Patterns
+{
+    public class Order
+    {
+        public string ShippingStatus { get; set; }
+        public string Country { get; set; }
+    }
+}
