@@ -51,6 +51,39 @@ public abstract class SkillFactory
 }
 ```
 
-This gives the possibility to add additional common behavior when retrieving a created object. 
+This gives the possibility to add additional common behavior when retrieving a created object.
+
 
 ### Abstract Factory
+
+In many cases the Simple Factory or the Factory Method will be sufficient.
+"The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes."
+
+
+
+
+### FacotryProvider
+
+```cs
+public class WhateverFactoryProvider
+{
+  private IEnumerable<Type> factories;
+  public WhateverFactoryProvider()
+  {
+    factories = Assembly.GetAssembly(typeof(WhateverFactoryProvider))
+                        .GetTypes()
+                        .Where(t => typeof(IWhateverFactory).IsAssignableFrom(t));
+  }
+
+  public IWhateverFactory CreateFactoryFor(string name)
+  {
+    var factory = factories.Single(x => x.Name.ToLowerInvariant().Contains(name.ToLowerInvariant()));
+    return (IWhateverFactory)Activator.CreateInstance(factory);
+  }
+
+}
+```
+
+### Some comments
+
+If you abuse it, the code can become unreadable.
